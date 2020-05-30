@@ -1,15 +1,15 @@
 import React from 'react';
 import {Container, Col, Nav, Row } from 'react-bootstrap'
-import {  Route, Switch} from 'react-router-dom'
+import {  Route, Switch, BrowserRouter} from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 //import './App.css';
+import Countries from './Cases.jsx'
 
 const URI = 'https://disease.sh/v2/all'
 
 class App extends React.Component {
 
   state = {
-    name: 'cardoso',
     data: {},
   }
 
@@ -31,6 +31,7 @@ class App extends React.Component {
     let Recovered = () => <h1>{this.state.data.recovered}</h1>
 
     return(
+      <BrowserRouter>
       <Container fluid>
         <Row>
           <Col sm={4}>
@@ -56,6 +57,7 @@ class App extends React.Component {
             <Switch>
               <Route path="/cases">
                 <Cases />
+                <Countries />
               </Route>
               <Route path="/deaths">
                 <Deaths />
@@ -67,6 +69,7 @@ class App extends React.Component {
           </Col>
         </Row>
       </Container>
+      </BrowserRouter>
     )
   }
 
