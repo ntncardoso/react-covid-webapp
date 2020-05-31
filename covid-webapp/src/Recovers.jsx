@@ -1,0 +1,70 @@
+import React from 'react';
+
+const URI = 'https://disease.sh/v2/countries'
+
+
+
+function CountryGrid(props) {
+  return(
+  <ul className="list-group list-group-flush overflow-auto h-100">
+            {props.countries.map(({country, countryInfo, recovered}) => (
+              <a className="text-decoration-none" href="">
+                <li className="list-group-item p-0 border-0">
+                  <div className="d-flex justify-content-center align-items-center list-group-item justify-content-between rounded-0 bg-light">
+                    <span className="text-dark">
+                      <span className="text-success">{recovered} </span>
+                      in {country}
+                    </span>
+                    <img className="flag float-right" src={countryInfo.flag} alt={country}/>
+                  </div>
+                </li>
+              </a>
+            ))}
+
+   </ul>
+  )
+}
+
+class Countries extends React.Component {
+
+    constructor(props){
+        super(props)
+
+        this.state = {
+            loading: true,
+            countries: [],
+        }
+
+        this.getData = this.getData.bind(this)
+    }
+
+    getData = () => {
+        fetch(URI)
+          .then((response) => response.json())
+          .then(countr => {
+              this.setState({
+                  countries: countr
+              })
+          })
+        
+    }
+
+    componentDidMount() {
+        this.getData()
+    }
+
+    componentDidUpdate() {
+        
+    }
+
+    
+
+    render(props){
+        return(
+            <CountryGrid countries={this.state.countries} />
+        )
+    }
+
+}
+
+export default Countries;

@@ -3,7 +3,9 @@ import {Container, Col, Nav, Row } from 'react-bootstrap'
 import {  Route, Switch, BrowserRouter} from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 //import './App.css';
-import Countries from './Cases.jsx'
+import CasesList from './Cases.jsx'
+import DeathsList from './Deaths'
+import RecoveredList from './Recovers'
 
 const URI = 'https://disease.sh/v2/all'
 
@@ -32,42 +34,43 @@ class App extends React.Component {
 
     return(
       <BrowserRouter>
-      <Container fluid>
-        <Row>
-          <Col sm={4}>
-            <Nav fill variant="tabs" defaultActiveKey="/cases">
-              <Nav.Item>
-                <LinkContainer to="/cases">
-                  <Nav.Link>Cases</Nav.Link>
-                </LinkContainer>
-              </Nav.Item>
-              <Nav.Item>
-                <LinkContainer to="/deaths">
-                  <Nav.Link>Deaths</Nav.Link>
-                </LinkContainer>
-              </Nav.Item>
-              <Nav.Item>
-                <LinkContainer to="/recovered">
-                  <Nav.Link>Recovered</Nav.Link>
-                </LinkContainer>
-              </Nav.Item>
-            </Nav>
-          </Col>
-          <Col sm={8}>
-            <Switch>
-              <Route path="/cases">
-                <Cases />
-                <Countries />
-              </Route>
-              <Route path="/deaths">
-                <Deaths />
-              </Route>
-              <Route path="/recovered">
-                <Recovered />
-              </Route>
-            </Switch>
-          </Col>
-        </Row>
+      <Container className="container-fluid h-100 bg-dark">
+        <div className="row h-100 p-2">
+          <div className="col-md-3 h-100 p-2">
+            <div className="h-5">
+              <Nav className="nav nav-tabs h-100 border-0 d-flex bg-light" defaultActiveKey="/cases">
+                <Nav.Item className="nav-item h-100 flex-fill m-0">
+                  <LinkContainer to="/cases">
+                    <Nav.Link>Cases</Nav.Link>
+                  </LinkContainer>
+                </Nav.Item>
+                <Nav.Item className="nav-item h-100 flex-fill m-0" >
+                  <LinkContainer to="/deaths">
+                    <Nav.Link>Deaths</Nav.Link>
+                  </LinkContainer>
+                </Nav.Item>
+                <Nav.Item className="nav-item h-100 flex-fill m-0">
+                  <LinkContainer to="/recovered">
+                    <Nav.Link>Recovered</Nav.Link>
+                  </LinkContainer>
+                </Nav.Item>
+              </Nav>
+            </div>
+            <div className="h-95">
+              <Switch>
+                <Route path="/cases">
+                  <CasesList />
+                </Route>
+                <Route path="/deaths">
+                  <DeathsList />
+                </Route>
+                <Route path="/recovered">
+                  <RecoveredList  />
+                </Route>
+              </Switch>
+            </div>
+          </div>
+        </div>
       </Container>
       </BrowserRouter>
     )
