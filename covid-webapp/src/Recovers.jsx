@@ -1,4 +1,5 @@
 import React from 'react';
+import Search from './Search'
 
 const URI = 'https://disease.sh/v2/countries'
 
@@ -6,22 +7,25 @@ const URI = 'https://disease.sh/v2/countries'
 
 function CountryGrid(props) {
   return(
-  <ul className="list-group list-group-flush overflow-auto h-100">
-            {props.countries.map(({country, countryInfo, recovered}) => (
-              <a className="text-decoration-none" href="">
-                <li className="list-group-item p-0 border-0">
-                  <div className="d-flex justify-content-center align-items-center list-group-item justify-content-between rounded-0 bg-light">
-                    <span className="text-dark">
-                      <span className="text-success">{recovered} </span>
-                      in {country}
-                    </span>
-                    <img className="flag float-right" src={countryInfo.flag} alt={country}/>
-                  </div>
-                </li>
-              </a>
-            ))}
+    <div className="card h-100 border-0 rounded-0">
+      <Search />
+      <ul className="list-group list-group-flush overflow-auto h-100">
+                {props.countries.map(({country, countryInfo, recovered}) => (
+                  <a className="text-decoration-none" href="">
+                    <li className="list-group-item p-0 border-0">
+                      <div className="d-flex justify-content-center align-items-center list-group-item justify-content-between rounded-0 bg-light">
+                        <span className="text-dark">
+                          <span className="text-success">{recovered} </span>
+                          in {country}
+                        </span>
+                        <img className="flag float-right" src={countryInfo.flag} alt={country}/>
+                      </div>
+                    </li>
+                  </a>
+                ))}
 
-   </ul>
+      </ul>
+   </div>
   )
 }
 

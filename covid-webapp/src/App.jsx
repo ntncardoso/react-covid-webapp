@@ -35,8 +35,8 @@ class App extends React.Component {
     return(
       <BrowserRouter>
       <Container className="container-fluid h-100 bg-dark">
-        <div className="row h-100 p-2">
-          <div className="col-md-3 h-100 p-2">
+        <Row className="row h-100 p-2">
+          <Col className="col-md-3 h-100 p-2">
             <div className="h-5">
               <Nav className="nav nav-tabs h-100 border-0 d-flex bg-light" defaultActiveKey="/cases">
                 <Nav.Item className="nav-item h-100 flex-fill m-0">
@@ -69,8 +69,8 @@ class App extends React.Component {
                 </Route>
               </Switch>
             </div>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </Container>
       </BrowserRouter>
     )

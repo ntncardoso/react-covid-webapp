@@ -20,7 +20,7 @@ class Search extends React.Component {
         this.getData()
       }
 
-    render() {
+    render(props) {
         return(
             <div className="card-header text-center p-0 pt-2 rounded-0 border-0 bg-light">
                 <h3 className="font-wright-bold mb-2 m-3 text-info">{this.state.data.cases}</h3>
