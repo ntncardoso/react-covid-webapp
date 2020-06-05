@@ -1,16 +1,26 @@
 import React from 'react';
-import {Container} from 'react-bootstrap'
 import {  Route, Switch, BrowserRouter} from 'react-router-dom'
 //import './App.css';
 import NavRender from './Nav'
+import CountryList from './CountryList'
 
 const URI = 'https://disease.sh/v2/all'
 
 class App extends React.Component {
+  constructor(props){
+    super(props)
+    
+    
+    this.state = {
+      data: {},
+      activeCase: 'cases',
+    }
 
-  state = {
-    data: {},
+    this.handleSelectLanguage = this.handleSelectLanguage.bind(this)
+
   }
+
+
 
   getData = () => {
     fetch(URI)
@@ -24,19 +34,26 @@ class App extends React.Component {
     this.getData()
   }
 
-  render() {
+   handleSelectLanguage(cases) {
+        this.setState({
+          activeCase: cases
+        })
+      }
 
+  render() {
+    
     return(
       <BrowserRouter>
-      <Container className="container-fluid h-100 bg-dark">
+      <div className="container-fluid h-100 bg-dark">
         <div className="row h-100 p-2">
           <div className="col-md-3 h-100 p-2">
             <div className="h-5">
-             <NavRender />
+             <NavRender onSelectLanguage={this.handleSelectLanguage}/>
             </div>
-            <div className="h-95">
+            <div className="h-95" style={{height: '95%'}}>
               <Switch>
-                <Route path="/Cases">
+                <Route path="/cases">
+                <CountryList />
                 </Route>
                 <Route path="/Deaths">
                 </Route>
@@ -46,7 +63,7 @@ class App extends React.Component {
             </div>
           </div>
         </div>
-      </Container>
+      </div>
       </BrowserRouter>
     )
   }
