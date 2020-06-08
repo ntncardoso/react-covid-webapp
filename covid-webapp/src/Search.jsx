@@ -35,7 +35,7 @@ class Search extends React.Component {
                         </span>
                     </div>
                     <input className="form-control rounded-0 border bg-light text-dark" type="text"
-                    placeholder="search..." value=""/>
+                    placeholder="search..." />
                 </div>
             </div>
         )

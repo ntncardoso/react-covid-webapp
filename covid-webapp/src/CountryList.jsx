@@ -17,7 +17,7 @@ function CountryGrid(props) {
                       <div className="d-flex justify-content-center align-items-center list-group-item justify-content-between rounded-0 bg-light">
                         <span className="text-dark">
                           <span className="text-info"> 
-                            {cases} </span>
+                            {props.selectedCase} </span>
                           in {country}
                         </span>
                         <img className="flag float-right" style={{height: 'auto', margin: '5px 0', width: '10%'}}src={countryInfo.flag} alt={country}/>
@@ -39,11 +39,11 @@ class CountryList extends React.Component {
         this.state = {
             loading: true,
             countries: [],
-            activeCase: 'cases',
+            selectedCase: props.newCase,
         }
 
         this.getData = this.getData.bind(this)
-        this.handleSelectLanguage = this.handleSelectLanguage.bind(this)
+        
     }
 
     getData = () => {
@@ -59,23 +59,17 @@ class CountryList extends React.Component {
 
     componentDidMount() {
         this.getData()
-    }
-
-    componentDidUpdate() {
         
     }
 
-     handleSelectLanguage(option) {
-        this.setState({
-          activeCase: option
-        })
-      }
-    
-
-    render(props){
+    componentDidUpdate() {
       
+    }
+
+    render(){
+        
         return(
-            <CountryGrid className="h-95" countries={this.state.countries} activeCase={this.state.activeCase} onSelectLanguage={this.handleSelectLanguage} />
+            <CountryGrid className="h-95" countries={this.state.countries} selectedCase={this.state.selectedCase}/>
         )
     }
 

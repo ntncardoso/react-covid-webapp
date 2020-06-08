@@ -34,9 +34,9 @@ class App extends React.Component {
     this.getData()
   }
 
-   handleSelectLanguage(cases) {
+   handleSelectLanguage(choise) {
         this.setState({
-          activeCase: cases
+          activeCase: choise
         })
       }
 
@@ -52,12 +52,8 @@ class App extends React.Component {
             </div>
             <div className="h-95" style={{height: '95%'}}>
               <Switch>
-                <Route path="/cases">
-                <CountryList />
-                </Route>
-                <Route path="/Deaths">
-                </Route>
-                <Route path="/Recovered">
+                <Route path={'/' + this.state.activeCase}>
+                  <CountryList newCase={this.state.activeCase}/>
                 </Route>
               </Switch>
             </div>
